@@ -11,6 +11,10 @@ migrate = Migrate(app, db)
 
 db.init_app(app)
 
+# Ensure database tables exist for tests and quick dev usage
+with app.app_context():
+    db.create_all()
+
 
 @app.route('/')
 def index():
